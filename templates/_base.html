@@ -1,0 +1,31 @@
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Medics Advantage{% endblock %}</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+    
+</head>
+<body>
+    {% include "components/navbar.html" %}
+    <main>
+        {% block content %}
+        <!-- Main content goes here -->
+        {% endblock %}
+    </main>
+    <footer>
+        // ...existing code...
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+    {% block extra_scripts %}
+    <!-- Additional scripts can be added here -->
+    {% endblock %}
+</body>
+</html>

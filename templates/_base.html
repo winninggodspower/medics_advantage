@@ -1,7 +1,8 @@
 {% load compress %}
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +11,26 @@
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
     
 </head>
-<body>
+<body class="">
     {% include "components/navbar.html" %}
     <main>
         {% block content %}
         <!-- Main content goes here -->
         {% endblock %}
     </main>
-    <footer>
-        // ...existing code...
-    </footer>
+    {% include "components/footer.html" %}
     
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
     {% block extra_scripts %}

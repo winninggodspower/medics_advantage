@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-36=*j@^f(giqxoll9vapit%r9otg(soh#-!2$*s+s9jmm43t=8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "medicadvantage.com",
+    "www.medicadvantage.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition

@@ -1676,6 +1676,10 @@ input:checked + .toggle-bg {
   margin-top: 1rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -1768,6 +1772,26 @@ input:checked + .toggle-bg {
 
 .min-h-\[620px\] {
   min-height: 620px;
+}
+
+.min-h-\[calc\(100vh-5rem\)\] {
+  min-height: calc(100vh - 5rem);
+}
+
+.min-h-\[calc\(100vh-10rem\)\] {
+  min-height: calc(100vh - 10rem);
+}
+
+.min-h-\[calc\(100vh-8rem\)\] {
+  min-height: calc(100vh - 8rem);
+}
+
+.min-h-\[calc\(100vh-7rem\)\] {
+  min-height: calc(100vh - 7rem);
+}
+
+.min-h-\[calc\(100vh-9rem\)\] {
+  min-height: calc(100vh - 9rem);
 }
 
 .w-0 {

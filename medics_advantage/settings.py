@@ -143,3 +143,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "../public_html/static")
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PAYPAL_CLIENT_ID="AVa2t_nOd4WJBXSJXf-QcpgoAMt7V4z4x1Hw8CZc6AqokXD4w2zV9lFguKNFMASiN4C6vs8Ex4U-t6wp"
+PAYPAL_CLIENT_SECRET="EKm-3rojVijmAjM28d5tbhUyLfFOvxbug23nVVD4T_QLCJi46dPFLvnO5MweBYfBm7KmFH8XwZPP9Wyy"
+DOMAINS="medicadvantage.com"

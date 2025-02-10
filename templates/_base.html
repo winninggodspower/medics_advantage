@@ -1,4 +1,4 @@
-{% load compress %}
+{% comment %} {% load compress %} {% endcomment %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Medics Advantage{% endblock %}</title>
 
-    {% compress css %}
+    {% comment %} {% compress css %} {% endcomment %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
-    {% endcompress %}
+    {% comment %} {% endcompress %} {% endcomment %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

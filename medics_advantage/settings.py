@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     "django_browser_reload",
-    'compressor',
+    # 'compressor',
     "core",
 ]
 

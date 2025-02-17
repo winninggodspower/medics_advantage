@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 {% load static %}
-{% load custom_tags %}
+{% load custom_tags image_optimizer %}
 
 {% block title %}Home - Medics Advantage{% endblock %}
 
@@ -56,7 +56,7 @@
         
         <!-- Right Column - Content -->
         <div class="rounded-lg overflow-hidden px-8 md:px-0 transform md:translate-x-20  order-1 md:order-2">
-            <img src="{% static 'images/Group-168.png' %}" alt="Medical Training Session">
+            {% optimized_image 'loading="lazy"' 'decoding="async"' 'src="images/Group-168.png"' 'alt="Medical Training Session"' %}
         </div>
     </div>
 </section>

@@ -156,6 +156,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Email settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "mail.medicadvantage.com"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True  # Use SSL since port 465 is specified
+EMAIL_USE_TLS = False  # Do not use TLS since SSL is enabled
+EMAIL_HOST_USER = "support@medicadvantage.com"
+EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -174,3 +184,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PAYPAL_CLIENT_ID=env('PAYPAL_CLIENT_ID')
 PAYPAL_CLIENT_SECRET=env("PAYPAL_CLIENT_SECRET")
 DOMAINS="medicadvantage.com"
+

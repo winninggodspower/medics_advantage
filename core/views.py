@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
+from django.http import JsonResponse
 from core.models import Booking
 import paypalrestsdk
 import datetime
@@ -46,13 +47,13 @@ def book_session(request):
                         "name": f"{session_type} mock session",
                         "sku": "001",
                         "price": price,
-                        "currency": "USD",
+                        "currency": "GBP",
                         "quantity": 1
                     }]
                 },
                 "amount": {
                     "total": price,
-                    "currency": "USD"
+                    "currency": "GBP"
                 },
                 "description": f"Booking for {session_type} mock session on {date} at {time}."
             }]
@@ -116,4 +117,24 @@ def booking_success(request):
 
 def booking_failed(request):
     return render(request, 'booking_failed.html')
+
+def contact_us(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        purpose = request.POST.get('purpose')
+        message = request.POST.get('message')
+
+        # Send email
+        send_mail(
+            f'Contact Form Submission: {purpose}',
+            f'Name: {name}\nEmail: {email}\n\nMessage:\n{message}',
+            settings.DEFAULT_FROM_EMAIL,
+            [settings.DEFAULT_FROM_EMAIL],
+            fail_silently=False,
+        )
+
+        return JsonResponse({'success': True})
+
+    return render(request, 'contact_us.html')
 

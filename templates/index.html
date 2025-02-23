@@ -316,22 +316,22 @@
                 </p>
             </div>
 
-            <form class="space-y-4">
+            <form action="{% url "contact_us" %}" id="contact-form" class="space-y-4">
                 <!-- Name Input -->
-                <input type="text" id="first_name" class="border border-[#938484] text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-3 md:py-3 md:px-5" placeholder="Name" required />
+                <input type="text" name="name" id="name" class="border border-[#938484] text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-3 md:py-3 md:px-5" placeholder="Name" required />
 
                 <!-- Email Input -->
-                <input type="email" placeholder="Email"
+                <input type="email" name="email" id="email" placeholder="Email"
                     class="border border-[#938484] text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-3 md:py-3 md:px-5"
                     required>
 
                 <!-- Purpose Input -->
-                <input type="text" placeholder="Purpose"
+                <input type="text" name="purpose" id="purpose" placeholder="Purpose"
                     class="border border-[#938484] text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-3 md:py-3 md:px-5"
                     required>
 
                 <!-- Message Input -->
-                <textarea placeholder="Message" rows="4"
+                <textarea name="message" id="message" placeholder="Message" rows="4"
                     class="border border-[#938484] text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full py-2 px-3 md:py-3 md:px-5 resize-none"
                     required></textarea>
 
@@ -341,6 +341,9 @@
                     Send message
                 </button>
             </form>
+            <div id="form-success" class="hidden text-green-500">
+                Your message has been sent successfully!
+            </div>
         </div>
 
         <!-- Right Column - Image -->
@@ -352,4 +355,26 @@
         </div>
     </div>
 </section>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch("{% url 'contact_us' %}", {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('form-success').classList.remove('hidden');
+            this.reset();
+        }
+    });
+});
+</script>
+
 {% endblock %}

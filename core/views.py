@@ -136,5 +136,5 @@ def contact_us(request):
 
         return JsonResponse({'success': True})
 
-    return render(request, 'contact_us.html')
+    return JsonResponse({'success': False})
 

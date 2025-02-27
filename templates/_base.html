@@ -25,6 +25,9 @@
 </head>
 <body class="">
     {% include "components/navbar.html" %}
+    <div id="alert-container" class="fixed top-24 left-1/2 transform -translate-x-1/2 max-w-md w-full z-50"></div>
+    <script src="{% static "js/alert.js" %}"></script>
+    
     <main>
         {% block content %}
         <!-- Main content goes here -->

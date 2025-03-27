@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block title %}Cancellation Policy - Medics Advantage{% endblock %}
+{% block content %}
+<div class="max-w-screen-lg mx-auto px-4 py-8 space-y-6">
+    <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center">
+        Cancellation Policy
+    </h2>
+    <ol class="list-decimal ml-8 space-y-2 text-lg">
+        <li>
+            Cancellation less than 4 weeks before the scheduled session, course, or event: No refunds will be provided.
+        </li>
+        <li>
+            Cancellation between 4 to 6 weeks before the scheduled date: A 50% refund will be issued, excluding bank transaction fees.
+        </li>
+        <li>
+            Cancellation between 6 weeks and above, before the scheduled date: A 20% cancellation fee will be deducted from the refund, excluding bank transaction fees.
+        </li>
+    </ol>
+    <p class="mt-4">
+        Please kindly contact us via 
+        <a class="text-blue-700"  href="mail:support@medicadvantage.com">email</a>
+        to initiate the cancellation or rescheduling process.
+    </p>
+</div>
+{% endblock %}

@@ -138,3 +138,11 @@ def contact_us(request):
 
     return JsonResponse({'success': False})
 
+# New view: Cancellation Policy page
+def cancellation_policy(request):
+    return render(request, 'cancellation_policy.html')
+
+# New view: About Mocks page
+def about_mocks(request):
+    return render(request, 'about_mocks.html')
+

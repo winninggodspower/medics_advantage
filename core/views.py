@@ -27,9 +27,9 @@ def book_session(request):
 
         # Set price based on session type
         if session_type == '2-station':
-            price = "60.00"
+            price = settings.TWO_STATION_PRICE
         elif session_type == '4-station':
-            price = "120.00"
+            price = settings.FOUR_STATION_PRICE
 
         # Create PayPal payment
         payment = paypalrestsdk.Payment({

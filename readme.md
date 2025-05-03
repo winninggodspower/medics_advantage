@@ -23,8 +23,8 @@ These instructions run project
 1. [Instructions to run the application]
 2. [Further instructions, if any]
 
-## Contributing
+## for running image optimizer script
+python manage.py optimize_images
 
-Please read [CONTRIBUTING.md] for details on our code of conduct, and the process for submitting pull requests.
 
 

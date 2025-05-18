@@ -14,4 +14,4 @@ class Booking(models.Model):
     payment_status = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.email} - {self.session_type} on {self.date} at {self.time}"
+        return f"{self.email} - {self.session_type} on {self.date} at {self.time} | payment status: {'completed' if self.payment_status else 'incomplete'}"

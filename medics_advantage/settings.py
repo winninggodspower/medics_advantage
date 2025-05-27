@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django_browser_reload",
     'django_img_optimizer',
     "core",
+    'video_lectures',
 ]
 
 MIDDLEWARE = [
@@ -176,6 +177,10 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "../public_html/static")
 OPTIMIZE_IMAGE_ROOT = os.path.join(BASE_DIR, 'static', 'images')
+
+# Media files (Uploaded by users)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

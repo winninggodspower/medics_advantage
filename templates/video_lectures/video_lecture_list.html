@@ -32,12 +32,13 @@
                         {% if video.thumbnail %}
                             <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="w-full h-48 object-cover">
                         {% else %}
-                            <img src="{{ video.video.url }}" alt="{{ video.title }}" class="w-full h-48 object-cover">
+                            {# Use YouTube thumbnail if no custom thumbnail #}
+                            <img src="https://img.youtube.com/vi/{{ video.video|cut:'https://www.youtube.com/watch?v='|cut:'https://youtu.be/' }}/hqdefault.jpg" alt="{{ video.title }}" class="w-full h-48 object-cover">
                         {% endif %}
                         <div class="absolute inset-0 flex items-center justify-center opacity-100 hover:bg-black/20 hover:opacity-100 transition-opacity duration-300">
                             <button type="button"
                                 class="bg-white/90 text-teal-600 hover:bg-white px-6 py-3 rounded-md font-medium play-video-btn"
-                                data-video-url="{{ video.video.url }}"
+                                data-video-url="{{ video.video }}"
                                 data-title="{{ video.title }}"
                                 data-description="{{ video.description }}">
                                 ▶ Play Video
@@ -71,14 +72,19 @@
             <h2 id="modal-video-title" class="text-2xl md:text-3xl font-bold mb-2 text-center text-primary-700"></h2>
             <p id="modal-video-description" class="text-gray-600 mb-4 text-center"></p>
             <div class="flex justify-center">
-                <video id="modal-video-player" controls class="w-full rounded-lg max-h-[60vh] shadow-lg border border-gray-200 bg-black" preload="none" style="background:#000;">
-                    <source src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div id="modal-video-player-container" class="w-full rounded-lg max-h-[60vh] shadow-lg border border-gray-200 bg-black" style="background:#000;">
+                    <!-- YouTube iframe will be injected here -->
+                </div>
             </div>
         </div>
     <script>
-    // Modal logic for playing video
+    // Helper to extract YouTube video ID from URL
+    function getYouTubeId(url) {
+        const regExp = /^.*(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\n?#]+).*/;
+        const match = url.match(regExp);
+        return (match && match[1]) ? match[1] : null;
+    }
+
     document.querySelectorAll('.play-video-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             const videoUrl = this.getAttribute('data-video-url');
@@ -86,17 +92,19 @@
             const description = this.getAttribute('data-description');
             document.getElementById('modal-video-title').textContent = title;
             document.getElementById('modal-video-description').textContent = description;
-            const player = document.getElementById('modal-video-player');
-            player.querySelector('source').src = videoUrl;
-            player.load();
+            const container = document.getElementById('modal-video-player-container');
+            const videoId = getYouTubeId(videoUrl);
+            if (videoId) {
+                container.innerHTML = `<iframe width="100%" height="360" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="rounded-lg w-full max-h-[60vh]"></iframe>`;
+            } else {
+                container.innerHTML = '<div class="text-white text-center p-8">Invalid YouTube URL</div>';
+            }
             document.getElementById('video-modal').classList.remove('hidden');
         });
     });
     document.getElementById('close-video-modal').addEventListener('click', function() {
         document.getElementById('video-modal').classList.add('hidden');
-        const player = document.getElementById('modal-video-player');
-        player.pause();
-        player.currentTime = 0;
+        document.getElementById('modal-video-player-container').innerHTML = '';
     });
     </script>
 </div>

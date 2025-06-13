@@ -1,0 +1,61 @@
+<!-- Add this right after the header section and before the Course Sections -->
+<div class="bg-white py-6 px-4 sm:px-6 lg:px-8 border-b">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="font-medium text-gray-700">Filter by course:</span>
+            <a href="#all" class="course-filter active px-4 py-2 rounded-full bg-teal-100 text-teal-800 hover:bg-teal-200 transition-colors">
+                All Courses
+            </a>
+            {% for course in courses %}
+                <a href="#course-{{ course.id }}" class="course-filter px-4 py-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-100 hover:text-teal-800 transition-colors">
+                    {{ course.name }}
+                </a>
+            {% endfor %}
+            {% if uncategorized_videos %}
+                <a href="#uncategorized" class="course-filter px-4 py-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-100 hover:text-teal-800 transition-colors">
+                    Other Videos
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Add this script at the end of your existing script section -->
+<script>
+    // Course filtering functionality
+    document.querySelectorAll('.course-filter').forEach(function(filter) {
+        filter.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all filters
+            document.querySelectorAll('.course-filter').forEach(f => {
+                f.classList.remove('active', 'bg-teal-100', 'text-teal-800');
+                f.classList.add('bg-gray-100', 'text-gray-800');
+            });
+            
+            // Add active class to clicked filter
+            this.classList.add('active', 'bg-teal-100', 'text-teal-800');
+            this.classList.remove('bg-gray-100', 'text-gray-800');
+            
+            const target = this.getAttribute('href').substring(1);
+            
+            if (target === 'all') {
+                // Show all course sections
+                document.querySelectorAll('.course-section').forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                // Hide all course sections
+                document.querySelectorAll('.course-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show only the selected course section
+                const selectedSection = document.getElementById(target);
+                if (selectedSection) {
+                    selectedSection.style.display = 'block';
+                }
+            }
+        });
+    });
+</script>
